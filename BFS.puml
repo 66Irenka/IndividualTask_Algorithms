@@ -1,0 +1,25 @@
+@startuml
+title Алгоритм BFS (Пошук шляху)
+
+start
+:Додати початкову вершину в чергу (Queue);
+:Позначити start як відвідану (visited);
+
+while (Черга не порожня?) is (так)
+  :Вилучити вершину 'current' з черги;
+  if (current == finish?) then (так)
+    :Шлях знайдено;
+    break
+  else (ні)
+    while (є наступна суміжна вершина 'to'?) is (так)
+      if (вершина 'to' ще не відвідана?) then (так)
+        :Позначити 'to' як відвідану;
+        :parent[to] = current;
+        :Додати 'to' в чергу;
+      endif
+    endwhile
+  endif
+endwhile
+
+stop
+@enduml

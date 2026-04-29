@@ -1,0 +1,33 @@
+@startuml
+title Алгоритм Дейкстри (Найкоротший шлях)
+
+start
+:Ініціалізація dist[] = нескінченність;
+:dist[start] = 0;
+:Додати {0, start} у пріоритетну чергу (PQ);
+
+while (PQ не порожня?) is (так)
+  :Вилучити вершину з найменшою відстанню (u);
+  if (відстань у PQ > dist[u]?) then (так)
+    :Пропустити вершину;
+  else (ні)
+    while (є наступна суміжна вершина 'v'?) is (так)
+      :weight = обрана вага (км або тип дороги);
+      if (dist[u] + weight < dist[v]?) then (так)
+        :dist[v] = dist[u] + weight;
+        :parent[v] = u;
+        :Додати {dist[v], v} у PQ;
+      endif
+    endwhile
+  endif
+endwhile
+
+if (dist[finish] == нескінченність?) then (так)
+  :Шлях не знайдено;
+else (ні)
+  :Відновити шлях через parent[];
+  :Вивести результат;
+endif
+
+stop
+@enduml
